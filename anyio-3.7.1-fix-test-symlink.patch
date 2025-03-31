@@ -1,0 +1,12 @@
+diff -urN anyio-3.7.1/tests/test_fileio.py anyio-3.7.1-fix-test-symlink/tests/test_fileio.py
+--- anyio-3.7.1/tests/test_fileio.py	2023-07-05 17:44:27.000000000 +0100
++++ anyio-3.7.1-fix-test-symlink/tests/test_fileio.py	2025-03-31 08:28:43.837228797 +0100
+@@ -213,7 +213,7 @@
+         assert not await Path("/btelkbee").is_block_device()
+         with os.scandir("/dev") as iterator:
+             for entry in iterator:
+-                if stat.S_ISBLK(entry.stat().st_mode):
++                if stat.S_ISBLK(entry.stat(follow_symlinks=False).st_mode):
+                     assert await Path(entry.path).is_block_device()
+                     break
+             else:
