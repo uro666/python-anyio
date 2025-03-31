@@ -1,5 +1,5 @@
 %define module anyio
-%bcond_without test
+%bcond_with test
 
 Summary:	High level compatibility layer for multiple asynchronous event loop implementations
 Name:		python-%{module}
